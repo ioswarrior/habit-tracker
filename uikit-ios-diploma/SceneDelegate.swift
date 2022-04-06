@@ -13,12 +13,44 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+       
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = createTabbar()
+        window.makeKeyAndVisible()
+        self.window = window
+        configureNavigationBar()
     }
-
+    
+    func createHabitsNC() -> UINavigationController {
+        let habitsVC = HabitsViewController(nibName: nil, bundle: nil)
+        let image = UIImage(systemName: "rectangle.grid.1x2.fill")!
+        habitsVC.tabBarItem = .init(title: "Привычки", image: image, tag: 0)
+        
+        return UINavigationController(rootViewController: habitsVC)
+    }
+    
+    func createInfoNC() -> UINavigationController {
+        let infoVC = InfoViewController(nibName: nil, bundle: nil)
+        let image = UIImage(systemName: "info.circle")!
+        infoVC.tabBarItem = .init(title: "Информация", image: image, tag: 1)
+        
+        return UINavigationController(rootViewController: infoVC)
+    }
+    
+    func createTabbar() -> UITabBarController {
+        let tabbar = UITabBarController(nibName: nil, bundle: nil)
+        UITabBar.appearance().tintColor = .systemPurple
+        UITabBar.appearance().backgroundColor = .systemBackground
+        tabbar.viewControllers = [createHabitsNC(), createInfoNC()]
+        return tabbar
+    }
+    
+    func configureNavigationBar() {
+        UINavigationBar.appearance().tintColor = .systemPurple
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
