@@ -8,9 +8,12 @@
 import UIKit
 
 class InfoViewController: UIViewController {
-    
+    override func loadView() {
+        view = InfoScrollView(frame: .zero)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        self.title = "Информация"
     }
 }

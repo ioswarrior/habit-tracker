@@ -19,8 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = createTabbar()
         window.makeKeyAndVisible()
+        window.tintColor = .systemPurple
         self.window = window
-        configureNavigationBar()
+        
     }
     
     func createHabitsNC() -> UINavigationController {
@@ -45,10 +46,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UITabBar.appearance().backgroundColor = .systemBackground
         tabbar.viewControllers = [createHabitsNC(), createInfoNC()]
         return tabbar
-    }
-    
-    func configureNavigationBar() {
-        UINavigationBar.appearance().tintColor = .systemPurple
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -23,11 +23,11 @@ class HabitsViewController: UIViewController {
     
     func setupRightBarButton() {
         let rightBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(barButtonAction))
-        rightBarButton.tintColor = .systemPurple
         self.navigationItem.rightBarButtonItem  = rightBarButton
     }
     
     @objc func barButtonAction() {
-        
+        let habitVC = HabitDetailsViewController(nibName: nil, bundle: nil)
+        self.navigationController?.pushViewController(habitVC, animated: true)
     }
 }
